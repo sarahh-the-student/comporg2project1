@@ -21,20 +21,28 @@ main:
 
   #Reading the input
   li $v0, 8
-  la $a0, buffer #reading up to 1000 characters
-  li $a1, 1000
+  la $a0, buffer 
+  li $a1, 1000 #reading up to 1000 characters
   syscall
 
+  #Initialize multiple variables
+
+  li $t1, 0 #index for current substring
+  li $t2, 0 #index for current character
+  li $t3, 0 #counter for substrings
+  
+
   #looping through string characters
-  la $t0, buffer
+  la $t4, buffer
 
   Loop:
 
   #loads each byte of user string X  
-  lb $t2, 0($t0)
+  lb $t5, 0($a1)
 
   #if the character is equal to the delimiter '/' run the Split function
   beq $t2, delimiter, SPlIT
+
   J Continue
 
   SPLIT:
