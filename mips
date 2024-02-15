@@ -32,38 +32,46 @@ main:
   li $t1, 0 #index for current substring
   li $t2, 0 #index for current character
   li $t3, 0 #counter for substrings
-  
-
-  #looping through string characters
-  la $t4, buffer
+  la $t4, buffer #looping through string characters
+  li $t5, 0 #sum of current sub_string
 
   #print resulting message
   li $v0, 8
-  la $a0, result_message
+  la $a1, result_message
   syscall
 
-  Loop:
+  Process_whole_string:
 
     #loads each byte of user string X  
-    lb $t5, 0($a1)
+    lb $t6, 0($a0)
 
     #if character is Null, end loop because we are at the end of the string
     beqz $t4, end
     
   
     #if the character is equal to the delimiter '/' run the Split function
-    beq $t2, delimiter, SPlIT
+    beq $t2, delimiter, process_substring
   
     #increase index for current character
     addi $t2, $t2, 1 
   
     #move to next character
-    addi $a1, $a1, 1
+    addi $a0, $a0, 1
   
-    j Loop
+    j Process_whole_string
 
-  SPLIT:
-        move $t6, $t2 
+  process_substring:
+
+
+  Is_num:
+
+  Is_lower_case:
+
+  Is_upper_case:
+    blt $t2, 'A', continue
+    bgt $t2, 'Z', continue
+
+  Continue:
 
 
 
