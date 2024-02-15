@@ -1,7 +1,15 @@
 #MIPS Program
 .data 
 
-#prompt user to enter number N
+#prompt user to enter number X
 user_prompt: .asciiz "Please enter an integer number ! \n"
+
+# limits the input string to 1000 characters
+buffer: .space 1000
+delimiter: .asciiz "/"
+
+.text 
+.global main
+
 
 
