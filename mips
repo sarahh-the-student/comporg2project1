@@ -106,7 +106,16 @@ main:
 
         #add delimiter to end of substring
         sb delimiter, ($a2)
-        
+
+        #reset sum
+        li $t4, 0
+
+       # Increment index for the current substring
+        addi $t1, $t1, $t2
+
+      # Reset index for the current character
+        li   $t2, 0
+
 
 
   Continue:
