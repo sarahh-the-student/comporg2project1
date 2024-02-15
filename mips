@@ -9,7 +9,11 @@ buffer: .space 1000
 delimiter: .asciiz "/"
 
 .text 
-.global main
+main:
+  #Print prompt message
+  li $v0, 4 #system call to print string
+  la $a0, user_prompt #loads address and prints user prompt
+
 
 
 
