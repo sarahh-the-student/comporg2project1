@@ -32,10 +32,8 @@ main:
   li $t1, 0 #index for current substring
   li $t2, 0 #index for current character
   li $t3, 0 #counter for substrings
-  la $t4, buffer #looping through string characters
-  li $t5, 0 #sum of current sub_string
-  li $t7, 48 #ascii value of '0'
-  li $t8, 57 #ascii value of '9'
+  li $t4, 0 #sum of current sub_string
+  la $t7, buffer   #load address of buffer
 
   #print resulting message
   li $v0, 8
@@ -45,14 +43,14 @@ main:
   Process_whole_string:
 
     #loads each byte of user string X  
-    lb $t6, 0($a0)
+    lb $t5, 0($a0)
 
     #if character is Null, end loop because we are at the end of the string
-    beqz $t6, end
+    beqz $t5, end
     
   
     #if the character is equal to the delimiter '/' run the Split function
-    beq $t6, delimiter, process_substring
+    beq $t5, delimiter, process_substring
   
     #increase index for current character
     addi $t2, $t2, 1 
@@ -65,33 +63,38 @@ main:
   process_substring:
 
     #store length of substring
-    move $t9, $t2
+    move $t6, $t2
 
     #load length of substring
     move $a1, $t6
 
     #load address of substring
-    move $a2, $t4
+    move $a2, $t7
 
-  
     #loop through substring
+    loop_substrings:
+
+      lbu $t8, 0($a2) #load next character
+      addi $a2, $a2, 1 #move to next character
+
+
     #start from first character of substring to character before delimiter
 
     #check if num
-    blt $t6, $t8, Is_num
+    blt $t5, , Is_num
     
     #check if capital letter
-    blt $t6, 'Z', Is_upper_case
-    blt $t6, 'z', Is_lower_case
+    blt $t5, 'Z', Is_upper_case
+    blt $t5, 'z', Is_lower_case
     
   Is_num:
-    add $t5, $t5, $t6
+    add $t4, $t4, $t5
 
   Is_lower_case:
-    add $t5, $t5, $t6
+    add $t4, $t4, $t5
 
   Is_upper_case:
-    add $t5, $t5, $t6
+    add $t4, $t4, $t5
     
 
 
