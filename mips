@@ -18,6 +18,17 @@ main:
   #Reading the input
   li $v0, 8
   la $a0, buffer #reading up to 1000 characters
+  li $a1, 1000
+  syscall
+
+  #looping through string characters
+  la $t0, buffer
+
+  Loop:
+
+  #if the character is equal to the delimiter '/' run the Split function
+  beq $t2, delimiter, SPlIT
+
 
 
 
