@@ -2,6 +2,6 @@
 .data 
 
 #prompt user to enter number N
-user_prompt: .asciiz "Please enter an integer number that is greater than or equal to 25! \n"
+user_prompt: .asciiz "Please enter an integer number ! \n"
 
 
