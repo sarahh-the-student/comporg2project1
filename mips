@@ -34,6 +34,8 @@ main:
   li $t3, 0 #counter for substrings
   la $t4, buffer #looping through string characters
   li $t5, 0 #sum of current sub_string
+  li $t7, 48 #ascii value of '0'
+  li $t8, 57 #ascii value of '9'
 
   #print resulting message
   li $v0, 8
@@ -61,9 +63,13 @@ main:
     j Process_whole_string
 
   process_substring:
+    lb $t6, 0($t0)
     #loop through substring
     #start from first character of substring to character before delimiter
+
     #check if num
+    blt
+
     #check if capital letter
     blt $t6, 'Z', Is_upper_case
     blt $t6, 'z', Is_lower_case
@@ -73,12 +79,10 @@ main:
   Is_num:
 
   Is_lower_case:
-    lb $t6, 0(
 
   Is_upper_case:
-    lb $t6, 0($t0)
-    blt $t6, 'A', continue
-    bgt $t6, 'Z', continue
+    
+
 
   Continue:
 
