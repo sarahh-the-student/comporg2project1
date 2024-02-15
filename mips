@@ -64,15 +64,19 @@ main:
     #loop through substring
     #start from first character of substring to character before delimiter
     #check if num
-    #check if letter
+    #check if capital letter
+    blt $t6, 'Z', Is_upper_case
+    blt $t6, 'z', Is_lower_case
+    
 
 
   Is_num:
 
   Is_lower_case:
+    lb $t6, 0(
 
   Is_upper_case:
-    lb $t6,
+    lb $t6, 0($t0)
     blt $t6, 'A', continue
     bgt $t6, 'Z', continue
 
