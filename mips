@@ -13,6 +13,11 @@ main:
   #Print prompt message
   li $v0, 4 #system call to print string
   la $a0, user_prompt #loads address and prints user prompt
+  syscall
+
+  #Reading the input
+  li $v0, 8
+  la $a0, buffer #reading up to 1000 characters
 
 
 
