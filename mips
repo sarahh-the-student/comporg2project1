@@ -74,13 +74,14 @@ main:
     blt $t6, 'Z', Is_upper_case
     blt $t6, 'z', Is_lower_case
     
-
-
   Is_num:
+    add $t5, $t5, $t6
 
   Is_lower_case:
+    add $t5, $t5, $t6
 
   Is_upper_case:
+    add $t5, $t5, $t6
     
 
 
