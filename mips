@@ -46,11 +46,11 @@ main:
     lb $t6, 0($a0)
 
     #if character is Null, end loop because we are at the end of the string
-    beqz $t4, end
+    beqz $t6, end
     
   
     #if the character is equal to the delimiter '/' run the Split function
-    beq $t2, delimiter, process_substring
+    beq $t6, delimiter, process_substring
   
     #increase index for current character
     addi $t2, $t2, 1 
@@ -61,6 +61,10 @@ main:
     j Process_whole_string
 
   process_substring:
+    #loop through substring
+    #start from first character of substring to character before delimiter
+    #check if num
+    #check if letter
 
 
   Is_num:
@@ -68,8 +72,9 @@ main:
   Is_lower_case:
 
   Is_upper_case:
-    blt $t2, 'A', continue
-    bgt $t2, 'Z', continue
+    lb $t6,
+    blt $t6, 'A', continue
+    bgt $t6, 'Z', continue
 
   Continue:
 
