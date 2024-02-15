@@ -10,6 +10,10 @@ delimiter: .asciiz "/"
 
 .text 
 main:
+
+  #Load delimiter
+  la $t0, delimiter
+  
   #Print prompt message
   li $v0, 4 #system call to print string
   la $a0, user_prompt #loads address and prints user prompt
@@ -26,8 +30,18 @@ main:
 
   Loop:
 
+  #loads each byte of user string X  
+  lb $t2, 0($t0)
+
   #if the character is equal to the delimiter '/' run the Split function
   beq $t2, delimiter, SPlIT
+  J Continue
+
+  SPLIT:
+        $t0
+
+  Continue:
+
 
 
 
