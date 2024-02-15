@@ -4,6 +4,8 @@
 #prompt user to enter number X
 user_prompt: .asciiz "Please enter an integer number ! \n"
 
+result_message: .asciiz "The formatted string is: \n"
+
 # limits the input string to 1000 characters
 buffer: .space 1000
 delimiter: .asciiz "/"
@@ -35,24 +37,33 @@ main:
   #looping through string characters
   la $t4, buffer
 
+  #print resulting message
+  li $v0, 8
+  la $a0, result_message
+  syscall
+
   Loop:
 
-  #loads each byte of user string X  
-  lb $t5, 0($a1)
+    #loads each byte of user string X  
+    lb $t5, 0($a1)
 
-  #if the character is equal to the delimiter '/' run the Split function
-  beq $t2, delimiter, SPlIT
-
-  #increase index for current character
-  addi $t2, $t2, 1 
-
-  #move to next character
-  addi $a1, $a1, 1
-
-  J loop
+    #if character is Null, end loop because we are at the end of the string
+    beqz $t4, end
+    
+  
+    #if the character is equal to the delimiter '/' run the Split function
+    beq $t2, delimiter, SPlIT
+  
+    #increase index for current character
+    addi $t2, $t2, 1 
+  
+    #move to next character
+    addi $a1, $a1, 1
+  
+    j Loop
 
   SPLIT:
-        $t0
+        move $t6, $t2 
 
 
 
