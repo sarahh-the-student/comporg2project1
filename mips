@@ -71,18 +71,17 @@ main:
     #load address of substring
     move $a2, $t7
 
-    #loop through substring
-    loop_substrings:
+    
+    Loop_substrings:
+      #loop through substring
 
       lbu $t8, 0($a2) #load next character
       addi $a2, $a2, 1 #move to next character
 
-
-    #start from first character of substring to character before delimiter
-
-    #check if num
-    blt $t5, , Is_num
-    
+      #check if num
+      blt $t8, 48, is_not_num #if the character's ascii value is less than 0 it is not a number
+      bgt $t8, 57, is_not_num #if character's ascii value is greater than 9 it is not a number
+        
     #check if capital letter
     blt $t5, 'Z', Is_upper_case
     blt $t5, 'z', Is_lower_case
