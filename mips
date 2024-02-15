@@ -81,20 +81,21 @@ main:
       #check if num
       blt $t8, 48, is_not_num #if the character's ascii value is less than 0 it is not a number
       bgt $t8, 57, is_not_num #if character's ascii value is greater than 9 it is not a number
+      add  $t4, $t4, $t8 #add ascii value to sum
+
+      j next_char
+
+    is_not_num: 
+      #check if capital letter
+      blt $t5, 'Z', Is_upper_case
+      blt $t5, 'z', Is_lower_case
+    
+      Is_lower_case:
+        add $t4, $t4, $t8
+    
+      Is_upper_case:
+        add $t4, $t4, $t8
         
-    #check if capital letter
-    blt $t5, 'Z', Is_upper_case
-    blt $t5, 'z', Is_lower_case
-    
-  Is_num:
-    add $t4, $t4, $t5
-
-  Is_lower_case:
-    add $t4, $t4, $t5
-
-  Is_upper_case:
-    add $t4, $t4, $t5
-    
 
 
   Continue:
