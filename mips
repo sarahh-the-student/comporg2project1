@@ -60,16 +60,16 @@ main:
     #move to next character
     addi $a0, $a0, 1
   
-    j Process_whole_string
+    j continue_whole_string
 
   process_substring:
-    lb $t6, 0($t0)
+    lb $t6, 0($a0)
     #loop through substring
     #start from first character of substring to character before delimiter
 
     #check if num
-    blt
-
+    blt $t6, $t8, Is_num
+    
     #check if capital letter
     blt $t6, 'Z', Is_upper_case
     blt $t6, 'z', Is_lower_case
