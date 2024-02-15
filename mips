@@ -1,3 +1,4 @@
+
 #MIPS Program
 .data 
 
@@ -115,10 +116,20 @@ main:
 
       # Reset index for the current character
         li   $t2, 0
+  
+    # Move to the next character in the string
+      addi $t5, $t5, 1
+
+    # Increment the counter for the number of substrings
+      addi $t3, $t3, 1
+
+      j Process_whole_string
 
 
-
-  Continue:
+  end:
+    #exit program
+    li   $v0, 10       # syscall code for exit
+    syscall
 
 
 
