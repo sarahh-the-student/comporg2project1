@@ -63,7 +63,17 @@ main:
     j continue_whole_string
 
   process_substring:
-    lb $t6, 0($a0)
+
+    #store length of substring
+    move $t9, $t2
+
+    #load length of substring
+    move $a1, $t6
+
+    #load address of substring
+    move $a2, $t4
+
+  
     #loop through substring
     #start from first character of substring to character before delimiter
 
