@@ -35,6 +35,7 @@ main:
   li $t4, 0 #sum of current sub_string
   la $t7, buffer   #load address of buffer
 
+
   #print resulting message
   li $v0, 8
   la $a1, result_message
@@ -95,6 +96,16 @@ main:
     
       Is_upper_case:
         add $t4, $t4, $t8
+
+      next_char:
+        addi $t6, $t6, -1  # Decrement the length counter
+        bnez $t6, Loop_substrings # Continue if not at the end of the substring
+
+        #save the current value of the sum in $a2
+        move $a2, $t4
+
+        #add delimiter to end of substring
+        sb delimiter, ($a2)
         
 
 
